@@ -37,7 +37,7 @@
 							<thead>
 								<tr>
 									<th class="text-center">#</th>
-									<th class="">ID No.</th>
+									<th class="">Reg No.</th>
 									<th class="">Name</th>
 									<th class="">Information</th>
 									<th class="text-center">Action</th>
@@ -52,7 +52,7 @@
 								<tr>
 									<td class="text-center"><?php echo $i++ ?></td>
 									<td>
-										<p> <b><?php echo $row['id_no'] ?></b></p>
+										<p> <b><?php echo $row['reg_no'] ?></b></p>
 									</td>
 									<td>
 										<p> <b><?php echo ucwords($row['name']) ?></b></p>
@@ -76,10 +76,8 @@
 			<!-- Table Panel -->
 		</div>
 	</div>	
-
 </div>
 <style>
-	
 	td{
 		vertical-align: middle !important;
 	}

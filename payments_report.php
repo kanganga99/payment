@@ -30,7 +30,7 @@ $month = isset($_GET['month']) ? $_GET['month'] : date('Y-m');
                             <?php
                             $i = 1;
                             $total = 0;
-                            $payments = $conn->query("SELECT p.*,s.name as sname, ef.ef_no,s.id_no FROM payments p inner join student_ef_list ef on ef.id = p.ef_id inner join student s on s.id = ef.student_id where date_format(p.date_created,'%Y-%m') = '$month' order by unix_timestamp(p.date_created) asc ");
+                            $payments = $conn->query("SELECT p.*,s.name as sname, ef.ef_no,s.reg_no FROM payments p inner join student_ef_list ef on ef.id = p.ef_id inner join student s on s.id = ef.student_id where date_format(p.date_created,'%Y-%m') = '$month' order by unix_timestamp(p.date_created) asc ");
                             if ($payments->num_rows > 0) :
                                 while ($row = $payments->fetch_array()) :
                                     $total += $row['amount'];
@@ -41,7 +41,7 @@ $month = isset($_GET['month']) ? $_GET['month'] : date('Y-m');
                                             <p> <b><?php echo date("M d,Y H:i A", strtotime($row['date_created'])) ?></b></p>
                                         </td>
                                         <td>
-                                            <p> <b><?php echo $row['id_no'] ?></b></p>
+                                            <p> <b><?php echo $row['reg_no'] ?></b></p>
                                         </td>
                                         <td>
                                             <p> <b><?php echo $row['ef_no'] ?></b></p>

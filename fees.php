@@ -37,7 +37,7 @@
 							<thead>
 								<tr>
 									<th class="text-center">#</th>
-									<th class="">ID No.</th>
+									<th class="">Reg No.</th>
 									<th class="">EF No.</th>
 									<th class="">Name</th>
 									<th class="">Payable Fee</th>
@@ -49,7 +49,7 @@
 							<tbody>
 								<?php 
 								$i = 1;
-								$fees = $conn->query("SELECT ef.*,s.name as sname,s.id_no FROM student_ef_list ef inner join student s on s.id = ef.student_id order by s.name asc ");
+								$fees = $conn->query("SELECT ef.*,s.name as sname,s.reg_no FROM student_ef_list ef inner join student s on s.id = ef.student_id order by s.name asc ");
 								while($row=$fees->fetch_assoc()):
 									$paid = $conn->query("SELECT sum(amount) as paid FROM payments where ef_id=".$row['id']);
 									$paid = $paid->num_rows > 0 ? $paid->fetch_array()['paid']:'';
@@ -58,7 +58,7 @@
 								<tr>
 									<td class="text-center"><?php echo $i++ ?></td>
 									<td>
-										<p> <b><?php echo $row['id_no'] ?></b></p>
+										<p> <b><?php echo $row['reg_no'] ?></b></p>
 									</td>
 									<td>
 										<p> <b><?php echo $row['ef_no'] ?></b></p>
@@ -115,7 +115,7 @@
 		
 	})
 	$('#new_fees').click(function(){
-		uni_modal("Enroll Student ","manage_fee.php","mid-large")
+		uni_modal("Enroll Student","manage_fee.php","mid-large")
 		
 	})
 	$('.edit_fees').click(function(){

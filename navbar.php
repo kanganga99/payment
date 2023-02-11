@@ -1,4 +1,3 @@
-
 <style>
 	.collapse a{
 		text-indent:10px;
@@ -7,9 +6,7 @@
 		/*background: url(assets/uploads/<?php echo $_SESSION['system']['cover_img'] ?>) !important*/
 	}
 </style>
-
 <nav id="sidebar" class='mx-lt-5 bg-dark' >
-		
 		<div class="sidebar-list">
 				<a href="index.php?page=home" class="nav-item nav-home"><span class='icon-field'><i class="fa fa-tachometer-alt "></i></span> Dashboard</a>
 				<a href="index.php?page=fees" class="nav-item nav-fees"><span class='icon-field'><i class="fa fa-money-check "></i></span> Student Fees</a>
@@ -25,7 +22,6 @@
 				<!-- <a href="index.php?page=site_settings" class="nav-item nav-site_settings"><span class='icon-field'><i class="fa fa-cogs"></i></span> System Settings</a> -->
 			<?php endif; ?>
 		</div>
-
 </nav>
 <script>
 	$('.nav_collapse').click(function(){

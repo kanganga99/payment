@@ -12,8 +12,8 @@ foreach($qry->fetch_array() as $k => $val){
         <input type="hidden" name="id" value="<?php echo isset($id) ? $id : '' ?>">
         <div id="msg" class="form-group"></div>
         <div class="form-group">
-            <label for="" class="control-label">Id No.</label>
-            <input type="text" class="form-control" name="id_no"  value="<?php echo isset($id_no) ? $id_no :'' ?>" required>
+            <label for="" class="control-label">Reg No.</label>
+            <input type="text" class="form-control" name="reg_no"  value="<?php echo isset($reg_no) ? $reg_no :'' ?>" required>
         </div>
         <div class="form-group">
             <label for="" class="control-label">Name</label>

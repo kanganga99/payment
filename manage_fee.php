@@ -23,7 +23,7 @@ if(isset($_GET['id'])){
 					$student = $conn->query("SELECT * FROM student order by name asc ");
 					while($row= $student->fetch_assoc()):
 				?>
-				<option value="<?php echo $row['id'] ?>" <?php echo isset($student_id) && $student_id == $row['id'] ? 'selected' : '' ?>><?php echo ucwords($row['name']).' | '. $row['id_no'] ?></option>
+				<option value="<?php echo $row['id'] ?>" <?php echo isset($student_id) && $student_id == $row['id'] ? 'selected' : '' ?>><?php echo ucwords($row['name']).' | '. $row['reg_no'] ?></option>
 				<?php endwhile; ?>
 			</select>
 		</div>
