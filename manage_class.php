@@ -1,14 +1,14 @@
 <?php
 include 'db_connect.php';
 if (isset($_GET['id'])) {
-    $qry = $conn->query("SELECT * FROM courses where id= " . $_GET['id']);
+    $qry = $conn->query("SELECT * FROM classes where id= " . $_GET['id']);
     foreach ($qry->fetch_array() as $k => $val) {
         $$k = $val;
     }
 }
 ?>
 <div class="container-fluid">
-    <form action="" id="manage-course">
+    <form action="" id="manage-class">
         <input type="hidden" name="id" value="<?php echo isset($id) ? $id : '' ?>">
         <div class="row">
             <div class="col-lg-6 border-right">
@@ -17,7 +17,7 @@ if (isset($_GET['id'])) {
                 <div id="msg" class="form-group"></div>
                 <div class="form-group">
                     <label for="" class="control-label">Class</label>
-                    <input type="text" class="form-control" name="course" value="<?php echo isset($course) ? $course : '' ?>" required>
+                    <input type="text" class="form-control" name="class" value="<?php echo isset($class) ? $class : '' ?>" required>
                 </div>
                 <div class="form-group">
                     <label for="" class="control-label">Level</label>
@@ -57,7 +57,7 @@ if (isset($_GET['id'])) {
                     <tbody>
                         <?php
                         if (isset($id)) :
-                            $fees = $conn->query("SELECT * FROM fees where course_id = $id");
+                            $fees = $conn->query("SELECT * FROM fees where class_id = $id");
                             $total = 0;
                             while ($row = $fees->fetch_assoc()) :
                                 $total += $row['amount'];
@@ -110,7 +110,7 @@ if (isset($_GET['id'])) {
     </table>
 </div>
 <script>
-    $('#manage-course').on('reset', function() {
+    $('#manage-class').on('reset', function() {
         $('#msg').html('')
         $('input:hidden').val('')
     })
@@ -131,7 +131,7 @@ if (isset($_GET['id'])) {
         $('#amount').val('')
         calculate_total()
     })
-
+    
     function calculate_total() {
         var total = 0;
         $('#fee-list tbody').find('[name="amount[]"]').each(function() {
@@ -146,7 +146,7 @@ if (isset($_GET['id'])) {
         _this.closest('tr').remove()
         calculate_total()
     }
-    $('#manage-course').submit(function(e) {
+    $('#manage-class').submit(function(e) {
         e.preventDefault()
         start_load()
         $('#msg').html('')
@@ -156,7 +156,7 @@ if (isset($_GET['id'])) {
             return false;
         }
         $.ajax({
-            url: 'ajax.php?action=save_course',
+            url: 'ajax.php?action=save_class',
             data: new FormData($(this)[0]),
             cache: false,
             contentType: false,
@@ -170,13 +170,12 @@ if (isset($_GET['id'])) {
                         location.reload()
                     }, 1000)
                 } else if (resp == 2) {
-                    $('#msg').html('<div class="alert alert-danger mx-2">Course Name & Level already exist.</div>')
+                    $('#msg').html('<div class="alert alert-danger mx-2">Class Name & Level already exist.</div>')
                     end_load()
                 }
             }
         })
     })
-
     $('.select2').select2({
         placeholder: "Please Select here",
         width: '100%'

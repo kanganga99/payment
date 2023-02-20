@@ -1,6 +1,8 @@
 <?php 
 include 'db_connect.php';
-$fees = $conn->query("SELECT ef.*,s.name as sname,s.reg_no,concat(c.course,' - ',c.level) as `class` FROM student_ef_list ef inner join student s on s.id = ef.student_id inner join courses c on c.id = ef.course_id  where ef.id = {$_GET['ef_id']}");
+$fees = $conn->query("SELECT ef.*,s.name as sname,s.reg_no,concat(c.class,' - ',c.level) 
+as `class` FROM student_ef_list ef inner join student s on s.id = ef.student_id 
+inner join classes c on c.id = ef.class_id  where ef.id = {$_GET['ef_id']}");
 foreach($fees->fetch_array() as $k => $v){
 	$$k= $v;
 }
@@ -67,7 +69,7 @@ while($row=$payments->fetch_array()){
 						<td width="50%" class='text-right'>Amount</td>
 					</tr>
 					<?php 
-				$cfees = $conn->query("SELECT * FROM fees where course_id = $course_id");
+				$cfees = $conn->query("SELECT * FROM fees where class_id = $class_id");
 				$ftotal = 0;
 				while ($row = $cfees->fetch_assoc()) {
 					$ftotal += $row['amount'];

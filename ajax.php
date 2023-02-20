@@ -48,13 +48,13 @@ if($action == "save_settings"){
 	if($save)
 		echo $save;
 }
-if($action == "save_course"){
-	$save = $crud->save_course();
+if($action == "save_class"){
+	$save = $crud->save_class();
 	if($save)
 		echo $save;
 }
-if($action == "delete_course"){
-	$delete = $crud->delete_course();
+if($action == "delete_class"){
+	$delete = $crud->delete_class();
 	if($delete)
 		echo $delete;
 }

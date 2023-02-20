@@ -31,7 +31,8 @@ Class Action {
 	function login2(){
 		
 		extract($_POST);		
-		$qry = $this->db->query("SELECT * FROM complainants where email = '".$email."' and password = '".md5($password)."' ");
+		$qry = $this->db->query("SELECT * FROM users where email = '".$email."' and password = '".md5($password)."' ");
+		// complainants
 		if($qry->num_rows > 0){
 			foreach ($qry->fetch_array() as $key => $value) {
 				if($key != 'passwors' && !is_numeric($key))
@@ -54,7 +55,8 @@ Class Action {
 		foreach ($_SESSION as $key => $value) {
 			unset($_SESSION[$key]);
 		}
-		header("location:../index.php");
+		// header("location:../index.php");
+		header("location:login.php");
 	}
 
 	function save_user(){
@@ -188,7 +190,7 @@ Class Action {
 			return 1;
 				}
 	}
-	function save_course(){
+	function save_class(){
 		extract($_POST);
 		$data = "";
 		foreach($_POST as $k => $v){
@@ -200,17 +202,17 @@ Class Action {
 				}
 			}
 		}
-		$check = $this->db->query("SELECT * FROM courses where course ='$course' and level ='$level' ".(!empty($id) ? " and id != {$id} " : ''))->num_rows;
+		$check = $this->db->query("SELECT * FROM classes where class ='$class' and level ='$level' ".(!empty($id) ? " and id != {$id} " : ''))->num_rows;
 		if($check > 0){
 			return 2;
 			exit;
 		}
 		if(empty($id)){
-			$save = $this->db->query("INSERT INTO courses set $data");
+			$save = $this->db->query("INSERT INTO classes set $data");
 			if($save){
 				$id = $this->db->insert_id;
 				foreach($fid as $k =>$v){
-					$data = " course_id = '$id' ";
+					$data = " class_id = '$id' ";
 					$data .= ", description = '{$type[$k]}' ";
 					$data .= ", amount = '{$amount[$k]}' ";
 					$save2[] = $this->db->query("INSERT INTO fees set $data");
@@ -218,30 +220,31 @@ Class Action {
 				if(isset($save2))
 						return 1;
 			}
-		}else{
-			$save = $this->db->query("UPDATE courses set $data where id = $id");
+		}
+		else{
+			$save = $this->db->query("UPDATE classes set $data where id = $id");
 			if($save){
-				$this->db->query("DELETE FROM fees where course_id = $id and id not in (".implode(',',$fid).") ");
+				$this->db->query("DELETE FROM fees where class_id = $id and id not in (".implode(',',$fid).") ");
 				foreach($fid as $k =>$v){
-					$data = " course_id = '$id' ";
+					$data = " class_id = '$id' ";
 					$data .= ", description = '{$type[$k]}' ";
 					$data .= ", amount = '{$amount[$k]}' ";
-					if(empty($v)){
-						$save2[] = $this->db->query("INSERT INTO fees set $data");
-					}else{
-						$save2[] = $this->db->query("UPDATE fees set $data where id = $v");
-					}
+					// if(empty($v)){
+					// 	$save2[] = $this->db->query("INSERT INTO fees set $data");
+					// }
+					// else{
+						$save2[] = $this->db->query("UPDATE fees set $data where id = $id");
+					// }
 				}
 				if(isset($save2))
 						return 1;
 			}
 		}
-
 	}
-	function delete_course(){
+	function delete_class(){
 		extract($_POST);
-		$delete = $this->db->query("DELETE FROM courses where id = ".$id);
-		$delete2 = $this->db->query("DELETE FROM fees where course_id = ".$id);
+		$delete = $this->db->query("DELETE FROM classes where id = ".$id);
+		$delete2 = $this->db->query("DELETE FROM fees where class_id = ".$id);
 		if($delete && $delete2){
 			return 1;
 		}

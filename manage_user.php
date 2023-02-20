@@ -4,7 +4,8 @@ session_start();
 if(isset($_GET['id'])){
 $user = $conn->query("SELECT * FROM users where id =".$_GET['id']);
 foreach($user->fetch_array() as $k =>$v){
-	$meta[$k] = $v;
+	// $meta[$k] = $v;
+	$$k = $v;
 }
 }
 ?>
@@ -58,7 +59,7 @@ foreach($user->fetch_array() as $k =>$v){
 			contentType:false,
 			processData:false,
 			method:'POST',
-            // type: 'POST',
+            type: 'POST',
 			// data:$(this).serialize(),
 			success:function(resp){
 				if(resp ==1){
@@ -73,5 +74,10 @@ foreach($user->fetch_array() as $k =>$v){
 			}
 		})
 	})
+
+	   $('.select2').select2({
+        placeholder:"Please Select here",
+        width:'100%'
+    })
 
 </script>

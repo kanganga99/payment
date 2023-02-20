@@ -28,14 +28,14 @@ if(isset($_GET['id'])){
 			</select>
 		</div>
 		<div class="form-group">
-			<label for="" class="control-label">Course</label>
-			<select name="course_id" id="course_id" class="custom-select input-sm select2">
+			<label for="" class="control-label">Class</label>
+			<select name="class_id" id="class_id" class="custom-select input-sm select2">
 				<option value=""></option>
 				<?php
-					$student = $conn->query("SELECT *,concat(course,'-',level) as class FROM courses order by course asc ");
+					$student = $conn->query("SELECT *,concat(class,'-',level) as class FROM classes order by class asc ");
 					while($row= $student->fetch_assoc()):
 				?>
-				<option value="<?php echo $row['id'] ?>" data-amount = "<?php echo $row['total_amount'] ?>" <?php echo isset($course_id) && $course_id == $row['id'] ? 'selected' : '' ?>><?php echo $row['class'] ?></option>
+				<option value="<?php echo $row['id'] ?>" data-amount = "<?php echo $row['total_amount'] ?>" <?php echo isset($class_id) && $class_id == $row['id'] ? 'selected' : '' ?>><?php echo $row['class'] ?></option>
 				<?php endwhile; ?>
 			</select>
 		</div>
@@ -50,8 +50,8 @@ if(isset($_GET['id'])){
 		placeholder:'Please select here',
 		width:'100%'
 	})
-	$('#course_id').change(function(){
-		var amount= $('#course_id option[value="'+$(this).val()+'"]').attr('data-amount')
+	$('#class_id').change(function(){
+		var amount= $('#class_id option[value="'+$(this).val()+'"]').attr('data-amount')
 		$('[name="total_fee"]').val(parseFloat(amount).toLocaleString('en-US',{style:'decimal',maximumFractionDigits:2,minimumFractionDigits:2}))
 	})
 	$('#manage-fees').submit(function(e){
