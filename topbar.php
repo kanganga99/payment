@@ -1,14 +1,56 @@
 <style>
-  .logo {
-    margin: auto;
-    font-size: 20px;
-    background: white;
-    padding: 7px 11px;
-    border-radius: 50% 50%;
-    color: #000000b3;
+  .topnav {
+  overflow: hidden;
+  background-color: #333;
+}
+
+.topnav a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.topnav a.active {
+  background-color: #04AA6D;
+  color: white;
+}
+
+.topnav .icon {
+  display: none;
+}
+
+@media screen and (max-width: 600px) {
+  .topnav a:not(:first-child) {display: none;}
+  .topnav a.icon {
+    float: right;
+    display: block;
   }
+}
+
+@media screen and (max-width: 600px) {
+  .topnav.responsive {position: relative;}
+  .topnav.responsive .icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .topnav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+}
 </style>
-<nav class="navbar navbar-light fixed-top bg-primary" style="padding:2px">
+<nav class="navbar navbar-light bg-primary" style="padding:2px">
   <div class="container-fluid mt-2 mb-2">
     <div class="col-lg-12">
       <div class="col-md-1 float-left" style="display: flex;"></div>
@@ -25,7 +67,7 @@
         </div>
       </div>
     </div>
-  </div>
+    </div>
 </nav>
 <script>
   $('#manage_my_account').click(function() {

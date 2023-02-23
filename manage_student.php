@@ -28,6 +28,30 @@ foreach($qry->fetch_array() as $k => $val){
             <input type="email" class="form-control" name="email"  value="<?php echo isset($email) ? $email :'' ?>" required>
         </div>
         <div class="form-group">
+        <label for="" class="form-label">Class</label><br>
+          <select type="class" name="class" class="custom-select input-sm select2">
+            <option value="">Select class</option>
+            <?php
+            $query = "SELECT *,concat(class,'-',level) as class FROM classes";
+            $result = $conn->query($query);
+            if ($result->num_rows > 0) {
+              while ($optionData = $result->fetch_assoc()) {
+                $option = $optionData['class'];
+            ?>
+                <?php
+                if (!empty($class) && $class == $option) {
+                ?>
+                  <option value="<?php echo $option; ?>" selected><?php echo $option; ?> </option>
+                <?php
+                } ?>
+                <option value="<?php echo $option; ?>"><?php echo $option; ?> </option>
+            <?php
+              }
+            }
+            ?>
+          </select>
+        </div>
+        <div class="form-group">
             <label for="" class="control-label">Address</label>
             <textarea name="address" id="" cols="30" rows="3" class="form-control" required=""><?php echo isset($address) ? $address :'' ?></textarea>
         </div>
@@ -51,6 +75,7 @@ foreach($qry->fetch_array() as $k => $val){
             method: 'POST',
             type: 'POST',
             success:function(resp){
+                resp = JSON.parse(resp)
                 if(resp==1){
                     alert_toast("Data successfully saved.",'success')
                         setTimeout(function(){

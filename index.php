@@ -7,7 +7,8 @@
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
   <title><?php echo isset($_SESSION['system']['name']) ? $_SESSION['system']['name'] : '' ?></title>
-  
+ 	
+
 <?php
   if(!isset($_SESSION['login_id']))
     header('location:login.php');
@@ -177,7 +178,6 @@ window._conf = function($msg='',$func='',$params = []){
      $('#confirm_modal #confirm').attr('onclick',$func+"("+$params.join(',')+")")
      $('#confirm_modal .modal-body').html($msg)
      $('#confirm_modal').modal('show')
-    //  $('#confirm_modal').modal('show')
   }
    window.alert_toast= function($msg = 'TEST',$bg = 'success'){
       $('#alert_toast').removeClass('bg-success')

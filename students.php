@@ -16,25 +16,18 @@
 	}
 </style>
 <div class="container-fluid">
-
 	<div class="col-lg-12">
-		<div class="row mb-4 mt-4">
-			<div class="col-md-12">
-			</div>
-		</div>
 		<div class="row">
-			<!-- FORM Panel -->
-
-			<!-- Table Panel -->
-			<div class="col-md-12">
+			<!-- <div class="col-md-12"> -->
+			<div class="col-md-12 grid-margin stretch-card">
 				<div class="card">
 					<div class="card-header">
 						<b>List of Students </b>
-						<span class="float:right">
+						<!-- <span class="float:right"> -->
 							<a class="btn btn-primary btn-block btn-sm col-sm-2 float-right" href="javascript:void(0)" id="new_student">
-							   <i class="fa fa-plus"></i> New
+								<i class="fa fa-plus"></i> New
 							</a>
-						</span>
+						<!-- </span> -->
 					</div>
 					<div class="card-body">
 						<table class="table table-condensed table-bordered table-hover">

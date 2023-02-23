@@ -150,11 +150,11 @@ if (isset($_GET['id'])) {
         e.preventDefault()
         start_load()
         $('#msg').html('')
-        if ($('#fee-list tbody').find('[name="fid[]"]').length <= 0) {
-            alert_toast("Please insert atleast 1 row in the fees table", 'danger')
-            end_load()
-            return false;
-        }
+        // if ($('#fee-list tbody').find('[name="fid[]"]').length <= 0) {
+        //     alert_toast("Please insert atleast 1 row in the fees table", 'danger')
+        //     end_load()
+        //     return false;
+        // }
         $.ajax({
             url: 'ajax.php?action=save_class',
             data: new FormData($(this)[0]),

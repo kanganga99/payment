@@ -296,22 +296,22 @@ Class Action {
 				}
 			}
 		}
-		$check = $this->db->query("SELECT * FROM student_ef_list where ef_no ='$ef_no' ".(!empty($id) ? " and id != {$id} " : ''))->num_rows;
+		$check = $this->db->query("SELECT * FROM studentfees where ef_no ='$ef_no' ".(!empty($id) ? " and id != {$id} " : ''))->num_rows;
 		if($check > 0){
 			return 2;
 			exit;
 		}
 		if(empty($id)){
-			$save = $this->db->query("INSERT INTO student_ef_list set $data");
+			$save = $this->db->query("INSERT INTO studentfees set $data");
 		}else{
-			$save = $this->db->query("UPDATE student_ef_list set $data where id = $id");
+			$save = $this->db->query("UPDATE studentfees set $data where id = $id");
 		}
 		if($save)
 			return 1;
 	}
 	function delete_fees(){
 		extract($_POST);
-		$delete = $this->db->query("DELETE FROM student_ef_list where id = ".$id);
+		$delete = $this->db->query("DELETE FROM studentfees where id = ".$id);
 		if($delete){
 			return 1;
 		}

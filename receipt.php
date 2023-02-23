@@ -1,7 +1,7 @@
 <?php 
 include 'db_connect.php';
 $fees = $conn->query("SELECT ef.*,s.name as sname,s.reg_no,concat(c.class,' - ',c.level) 
-as `class` FROM student_ef_list ef inner join student s on s.id = ef.student_id 
+as `class` FROM studentfees ef inner join student s on s.id = ef.student_id 
 inner join classes c on c.id = ef.class_id  where ef.id = {$_GET['ef_id']}");
 foreach($fees->fetch_array() as $k => $v){
 	$$k= $v;

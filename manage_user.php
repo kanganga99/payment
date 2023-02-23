@@ -29,7 +29,7 @@ foreach($user->fetch_array() as $k =>$v){
 			<small><i>Leave this blank if you dont want to change the password.</i></small>
 		<?php endif; ?>
 		</div>
-		<?php if(isset($meta['type']) && $meta['type'] == 3): ?>
+		<!-- <?php if(isset($meta['type']) && $meta['type'] == 3): ?>
 			<input type="hidden" name="type" value="3">
 		<?php else: ?>
 		<?php if(!isset($_GET['mtype'])): ?>
@@ -41,7 +41,7 @@ foreach($user->fetch_array() as $k =>$v){
 			</select>
 		</div>
 		<?php endif; ?>
-		<?php endif; ?>
+		<?php endif; ?> -->
 	</form>
 </div>
 <script>

@@ -1,7 +1,7 @@
 <?php include 'db_connect.php' ?>
 <?php
 if(isset($_GET['id'])){
-	$qry = $conn->query("SELECT * FROM student_ef_list where id = {$_GET['id']} ");
+	$qry = $conn->query("SELECT * FROM studentfees where id = {$_GET['id']} ");
 	foreach($qry->fetch_array() as $k => $v){
 		$$k = $v;
 	}
@@ -67,7 +67,6 @@ if(isset($_GET['id'])){
 			},
 			success:function(resp){
 				if(resp == 1){
-					location.reload();
 					alert_toast("Data successfully saved.",'success')
 						setTimeout(function(){
 							location.reload()
